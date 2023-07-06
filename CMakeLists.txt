@@ -34,14 +34,25 @@ set_target_properties(join_server PROPERTIES
   CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
-  target_link_libraries(
-      join_server 
-      Boost::asio
-      Boost::algorithm 
-      ${CMAKE_THREAD_LIBS_INIT} dl
-      ws2_32
-      wsock32
-  )
+    if (MSVC)
+        target_link_libraries(
+            join_server 
+            Boost::asio
+            Boost::algorithm 
+            ${CMAKE_THREAD_LIBS_INIT}
+            ws2_32
+            wsock32
+        )
+    else ()
+        target_link_libraries(
+            join_server 
+            Boost::asio
+            Boost::algorithm 
+            ${CMAKE_THREAD_LIBS_INIT} dl
+            ws2_32
+            wsock32
+        )
+    endif()
 else()
   target_link_libraries(
       join_server 
