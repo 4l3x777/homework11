@@ -1,3 +1,9 @@
+sqlite3*
+*.sqlite
+build
+.vscode
+img
+
 # Prerequisites
 *.d
 
